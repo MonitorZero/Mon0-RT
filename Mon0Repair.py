@@ -6,7 +6,6 @@ import os
 import sys
 import time
 import pyautogui
-import win32com.client as shell
 import time
 
 # Theme
@@ -27,24 +26,50 @@ hardwareLayout = [
 [sg.Button('Device Manager',k='deviceManager',size=(30,4),font='Bold'), sg.Button('Disk Management',k='diskManagement',size=(30,4),font='Bold')],
 [sg.Button('Defragment',k='defragment',size=(30,4),font='Bold'), sg.Button('Disk Cleanup',k='diskCleanup',size=(30,4),font='Bold')],
 [sg.Button('Memory Diagnostic',k='memoryDiagnostic',size=(30,4),font='Bold'),sg.Button('LCD Test',k='lcdTest',size=(30,4),font='Bold') ],
-[sg.Button('Battery Health',k='batteryHealth',size=(30,4),font='Bold')]
+[sg.Button('Battery Health',k='batteryHealth',size=(30,4),font='Bold'), sg.Button('Data Recovery',k='dataRecovery',size=(30,4),font='Bold')],
 
 ]
 
 osrepairLayout = [
 
-[sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold')]
+[sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold'), sg.Button('Event Viewer',k='eventViewer',size=(30,4),font='Bold')],
+[sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View',k='bluescreenview',size=(30,4),font='Bold')],
+[sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'), sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
+[sg.Button('Disk Cleanup',k='disccleanup',size=(30,4),font='Bold')],
+
+]
+
+softwareLayout = [
+
+[sg.Button('Sleep & Wake Info',k='sleepWakeInfo',size=(30,4),font='Bold'), sg.Button("Don't Sleep",k='donotsleep',size=(30,4),font='Bold')],
+[sg.Button('Uninstall Programs',k='uninstallPrograms',size=(30,4),font='Bold')],
+
+
+]
+
+networkingLayout = [
+
+[sg.Button('Reset TCP/IP & Windsock',k='resetTCPIP',size=(30,4),font='Bold'), sg.Button('Windows Firewall',k='firewall',size=(30,4),font='Bold')],
+[sg.Button('TCP & UDP Port Query',k='portQuery',size=(30,4),font='Bold'), sg.Button('Wireless Site Survey',k='wirelesssurvey',size=(30,4),font='Bold')],
+[sg.Button('View Open Ports',k='viewOpenPorts',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console',k='putty',size=(30,4),font='Bold')],
+[sg.Button('LAN Speed Test',k='lanSpeedTest',size=(30,4),font='Bold'), sg.Button('View Open Shared Files',k='viewOpenSharedFiles',size=(30,4),font='Bold')],
+[sg.Button('Continuous Ping Test',k='continuousPingTest',size=(30,4),font='Bold'), sg.Button('Nmap',k='nmap',size=(30,4),font='Bold')],
 
 ]
 
 tabgrp = [[sg.TabGroup([[
            sg.Tab('General',layout=generalLayout,element_justification='center'),
            sg.Tab('Hardware',layout=hardwareLayout,element_justification='center'),
-           sg.Tab('OS Repair',layout=osrepairLayout,element_justification='center')]],
-           tab_location='top-left')]]
+           sg.Tab('OS Repair',layout=osrepairLayout,element_justification='center'),
+           sg.Tab('Software',layout=softwareLayout,element_justification='center'),
+           sg.Tab('Networking',layout=networkingLayout,element_justification='center')]],
+           tab_location='topleft')]]
 
 
 window = sg.Window('Mon0 Repair Tool',tabgrp)
+
+# Store the username for use throughout the program
+USER = os.getlogin()
 
 # Event code
 while True:
@@ -52,6 +77,7 @@ while True:
     print(event, values)
     if event == sg.WINDOW_CLOSED or event == 'Exit' or event == 'Exit0':
         break
+
     # General Tab
     if event == 'systemInformation':
         os.system('control system')
@@ -100,4 +126,63 @@ while True:
     if event == 'batteryHealth':
         os.system('powercfg /batteryreport')
         os.startfile('C:\\Windows\\System32\\battery-report')
+    #if event == 'dataRecovery':
+        # https://www.cgsecurity.org/
+        #os.startfile('C:\\Windows\\System32\\cgsecurity.exe')
+        # https://www.cgsecurity.org/wiki/TestDisk_Download
+        #os.startfile('C:\\Windows\\System32\\cgsecurity.exe')
+
+    # OS Repair Tab
+    if event == 'autoRun':
+        os.startfile(f'C:\\Users\\{USER}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup')
+    if event == 'eventViewer':
+        os.system('eventvwr')
+    if event == 'systemFileChecker':
+        os.system('DISM.exe /Online /Cleanup-image /Restorehealth')
+        os.system('sfc /scannow')
+        # Create popup for completion of scan
+        sg.popup('Scan Complete!',title='System File Checker')
+    #if event == 'bluescreenview':
+        # Still under development
+        # http://www.nirsoft.net/utils/blue_screen_view.html
+    if event == 'registryEditor':
+        os.system('regedit')
+    if event == 'windowsUpdateRepair':
+        os.system('msdt.exe /id WindowsUpdateDiagnostic')
+    if event == 'disccleanup':
+        os.system('cleanmgr')
     
+    # Software Tab
+    if event == 'sleepWakeInfo':
+        os.system('powercfg.cpl')
+    if event == 'donotsleep':
+        os.system('powercfg /change monitor-timeout-ac 0')
+        os.system('powercfg /change monitor-timeout-dc 0')
+        os.system('powercfg /change standby-timeout-ac 0')
+        os.system('powercfg /change standby-timeout-dc 0')
+    if event == 'uninstallPrograms':
+        os.system('appwiz.cpl')
+
+    # Networking Tab
+    if event == 'resetTCPIP':
+        os.system('netsh winsock reset')
+        os.system('netsh int ip reset')
+        os.system('ipconfig /release')
+        os.system('ipconfig /renew')
+        os.system('ipconfig /flushdns')
+    if event == 'firewall':
+        os.system('wf.msc')
+    if event == 'portquery':
+        # https://www.the-sz.com/products/portscan/
+        continue
+    if event == 'wirelesssurvey':
+        #https://www.the-sz.com/products/homedale/
+        continue
+    if event == 'viewOpenPorts':
+        # https://www.the-sz.com/products/portscan/
+        continue
+    if event == 'putty':
+        # https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+        continue
+    
+
