@@ -7,6 +7,15 @@ import sys
 import time
 import pyautogui
 import time
+import socket
+
+# Get the current IP address
+hostname = socket.gethostname()
+local_ip = socket.gethostbyname(hostname)
+
+# Store the username for use throughout the program
+USER = os.getlogin()
+
 
 # Theme
 sg.theme('Topanga')
@@ -57,19 +66,28 @@ networkingLayout = [
 
 ]
 
-tabgrp = [[sg.TabGroup([[
-           sg.Tab('General',layout=generalLayout,element_justification='center'),
-           sg.Tab('Hardware',layout=hardwareLayout,element_justification='center'),
-           sg.Tab('OS Repair',layout=osrepairLayout,element_justification='center'),
-           sg.Tab('Software',layout=softwareLayout,element_justification='center'),
-           sg.Tab('Networking',layout=networkingLayout,element_justification='center')]],
-           tab_location='topleft')]]
+tabgrp = [[
+            sg.TabGroup([[
+            sg.Tab('General',layout=generalLayout,element_justification='center'),
+            sg.Tab('Hardware',layout=hardwareLayout,element_justification='center'),
+            sg.Tab('OS Repair',layout=osrepairLayout,element_justification='center'),
+            sg.Tab('Software',layout=softwareLayout,element_justification='center'),
+            sg.Tab('Networking',layout=networkingLayout,element_justification='center')]],
+            tab_location='topleft'),
+]]
 
+infoColumn = [
+            [sg.Text(f'IP Address: {local_ip}',font='Bold',size=(30,1)),sg.Text('IP Address to Ping ',font='Bold'),sg.InputText(size=(15,1),key='ipAddress',default_text='8.8.8.8')],
+            [sg.Text(f'Username:   {USER}',font='Bold',size=(30,1))],
+            [sg.Text(f'PC Name:    {hostname}',font='Bold',size=(30,1))],
+]
 
-window = sg.Window('Mon0 Repair Tool',tabgrp)
+layout = [
+        [sg.Column(tabgrp)],
+        [sg.Column(infoColumn)],
+]
 
-# Store the username for use throughout the program
-USER = os.getlogin()
+window = sg.Window('Mon0 Repair Tool',layout)
 
 # Event code
 while True:
@@ -95,7 +113,7 @@ while True:
         pyautogui.typewrite('cmd')
         pyautogui.hotkey('ctrl','shift','enter')
     if event == 'printers':
-        os.system('control printers')
+        os.system('Start ms-settings:printers')
     if event == 'network':
         os.system('control.exe /name Microsoft.NetworkandSharingCenter')
     if event == 'rebootsafemode':
@@ -184,5 +202,18 @@ while True:
     if event == 'putty':
         # https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
         continue
-    
+    if event == 'lanSpeedTest':
+        # https://totusoft.com/lanspeed
+        continue
+    if event == 'viewSharedFiles':
+        os.system('cmd /k "net share"')
+        os.system('control.exe /name Microsoft.NetworkandSharingCenter')
+    if event == 'continuousPingTest':
+        # get the IP address from the ipAddress key
+        ipAddress = values['ipAddress']
+        os.system(f'cmd /k "ping -n 100 {ipAddress}')
+    if event == 'nmap':
+        # https://nmap.org/
+        continue
+
 
