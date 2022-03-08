@@ -1,10 +1,8 @@
 # @author MonitorZero
 
-from xml.dom.minidom import Element
+import webbrowser
 import PySimpleGUI as sg
 import os
-import sys
-import time
 import pyautogui
 import time
 import socket
@@ -44,14 +42,14 @@ osrepairLayout = [
 [sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold'), sg.Button('Event Viewer',k='eventViewer',size=(30,4),font='Bold')],
 [sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View (Dev)',k='bluescreenview',size=(30,4),font='Bold')],
 [sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'), sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
-[sg.Button('Disk Cleanup',k='disccleanup',size=(30,4),font='Bold')],
+[sg.Button('Disk Cleanup',k='disccleanup',size=(30,4),font='Bold'),sg.Button('CCleaner (Dev)',k='ccleaner',size=(30,4),font='Bold')],
 
 ]
 
 softwareLayout = [
 
 [sg.Button('Sleep & Wake Info',k='sleepWakeInfo',size=(30,4),font='Bold'), sg.Button("Don't Sleep",k='donotsleep',size=(30,4),font='Bold')],
-[sg.Button('Uninstall Programs',k='uninstallPrograms',size=(30,4),font='Bold')],
+[sg.Button('Uninstall Programs',k='uninstallPrograms',size=(30,4),font='Bold'),sg.Button('Stinger Virus Scan (Dev)' ,k='stinger',size=(30,4),font='Bold')],
 
 
 ]
@@ -59,10 +57,10 @@ softwareLayout = [
 networkingLayout = [
 
 [sg.Button('Reset TCP/IP & Windsock',k='resetTCPIP',size=(30,4),font='Bold'), sg.Button('Windows Firewall',k='firewall',size=(30,4),font='Bold')],
-[sg.Button('TCP & UDP Port Query (Dev)',k='portQuery',size=(30,4),font='Bold'), sg.Button('Wireless Site Survey (Dev)',k='wirelesssurvey',size=(30,4),font='Bold')],
-[sg.Button('View Open Ports (Dev)',k='viewOpenPorts',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console (Dev)',k='putty',size=(30,4),font='Bold')],
-[sg.Button('LAN Speed Test (Dev)',k='lanSpeedTest',size=(30,4),font='Bold'), sg.Button('View Open Shared Files',k='viewOpenSharedFiles',size=(30,4),font='Bold')],
-[sg.Button('Continuous Ping Test',k='continuousPingTest',size=(30,4),font='Bold'), sg.Button('Nmap (Dev)',k='nmap',size=(30,4),font='Bold')],
+[sg.Button('TCP & UDP Port Query (Dev)',k='portQuery',size=(30,4),font='Bold'),sg.Button('View Open Ports (Dev)',k='viewOpenPorts',size=(30,4),font='Bold') ],
+[sg.Button('Nmap (Dev)',k='nmap',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console (Dev)',k='putty',size=(30,4),font='Bold')],
+[sg.Button('Up/Down Speed Test (Fast.com)',k='lanSpeedTest',size=(30,4),font='Bold'), sg.Button('View Open Shared Files',k='viewOpenSharedFiles',size=(30,4),font='Bold')],
+[sg.Button('Continuous Ping Test',k='continuousPingTest',size=(30,4),font='Bold') ],
 
 ]
 
@@ -87,7 +85,7 @@ infoColumn = [
 ]
 
 layout = [
-        [sg.Column(tabgrp)],
+        [sg.Column(tabgrp,)],
         [sg.Column(infoColumn)],
 ]
 
@@ -149,15 +147,13 @@ while True:
         os.system('powercfg /batteryreport')
         os.startfile('C:\\Windows\\System32\\battery-report')
     #if event == 'dataRecovery':
-        # https://www.cgsecurity.org/
-        #os.startfile('C:\\Windows\\System32\\cgsecurity.exe')
-        # https://www.cgsecurity.org/wiki/TestDisk_Download
-        #os.startfile('C:\\Windows\\System32\\cgsecurity.exe')
+        # https://portableapps.com/apps/utilities/rcvportable
     if event == 'microsoftServices':
         os.system('services.msc')
 
     # OS Repair Tab
     if event == 'autoRun':
+        # https://portableapps.com/apps/utilities/autoruns-portable
         os.startfile(f'C:\\Users\\{USER}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup')
     if event == 'eventViewer':
         os.system('eventvwr')
@@ -175,7 +171,9 @@ while True:
         os.system('msdt.exe /id WindowsUpdateDiagnostic')
     if event == 'disccleanup':
         os.system('cleanmgr')
-    
+    if event == 'ccleaner':
+        # https://portableapps.com/apps/utilities/ccportable
+        continue
     # Software Tab
     if event == 'sleepWakeInfo':
         os.system('powercfg.cpl')
@@ -186,6 +184,10 @@ while True:
         os.system('powercfg /change standby-timeout-dc 0')
     if event == 'uninstallPrograms':
         os.system('appwiz.cpl')
+    if event == 'stinger':
+        # https://portableapps.com/apps/security/mcafee-stinger-portable
+        # Also possible Malwarebytes ADWCleaner https://www.malwarebytes.com/adwcleaner
+        continue
 
     # Networking Tab
     if event == 'resetTCPIP':
@@ -197,19 +199,16 @@ while True:
     if event == 'firewall':
         os.system('wf.msc')
     if event == 'portquery':
-        # https://www.the-sz.com/products/portscan/
-        continue
-    if event == 'wirelesssurvey':
-        #https://www.the-sz.com/products/homedale/
+        # https://portableapps.com/apps/utilities/tcpview-portable
         continue
     if event == 'viewOpenPorts':
-        # https://www.the-sz.com/products/portscan/
+        # https://portableapps.com/apps/utilities/portexpert-portable
         continue
     if event == 'putty':
         # https://portableapps.com/apps/internet/putty_portable
         continue
     if event == 'lanSpeedTest':
-        # https://totusoft.com/lanspeed
+        webbrowser.open('https://www.fast.com/')
         continue
     if event == 'viewSharedFiles':
         os.system('cmd /k "net share"')
