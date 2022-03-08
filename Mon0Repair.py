@@ -16,7 +16,6 @@ local_ip = socket.gethostbyname(hostname)
 # Store the username for use throughout the program
 USER = os.getlogin()
 
-
 # Theme
 sg.theme('Topanga')
 
@@ -35,14 +34,15 @@ hardwareLayout = [
 [sg.Button('Device Manager',k='deviceManager',size=(30,4),font='Bold'), sg.Button('Disk Management',k='diskManagement',size=(30,4),font='Bold')],
 [sg.Button('Defragment',k='defragment',size=(30,4),font='Bold'), sg.Button('Disk Cleanup',k='diskCleanup',size=(30,4),font='Bold')],
 [sg.Button('Memory Diagnostic',k='memoryDiagnostic',size=(30,4),font='Bold'),sg.Button('LCD Test',k='lcdTest',size=(30,4),font='Bold') ],
-[sg.Button('Battery Health',k='batteryHealth',size=(30,4),font='Bold'), sg.Button('Data Recovery',k='dataRecovery',size=(30,4),font='Bold')],
+[sg.Button('Battery Health',k='batteryHealth',size=(30,4),font='Bold'), sg.Button('Data Recovery (Dev)',k='dataRecovery',size=(30,4),font='Bold')],
+[sg.Button('Microsoft Services',k='microsoftServices',size=(30,4),font='Bold')],
 
 ]
 
 osrepairLayout = [
 
 [sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold'), sg.Button('Event Viewer',k='eventViewer',size=(30,4),font='Bold')],
-[sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View',k='bluescreenview',size=(30,4),font='Bold')],
+[sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View (Dev)',k='bluescreenview',size=(30,4),font='Bold')],
 [sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'), sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
 [sg.Button('Disk Cleanup',k='disccleanup',size=(30,4),font='Bold')],
 
@@ -59,27 +59,31 @@ softwareLayout = [
 networkingLayout = [
 
 [sg.Button('Reset TCP/IP & Windsock',k='resetTCPIP',size=(30,4),font='Bold'), sg.Button('Windows Firewall',k='firewall',size=(30,4),font='Bold')],
-[sg.Button('TCP & UDP Port Query',k='portQuery',size=(30,4),font='Bold'), sg.Button('Wireless Site Survey',k='wirelesssurvey',size=(30,4),font='Bold')],
-[sg.Button('View Open Ports',k='viewOpenPorts',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console',k='putty',size=(30,4),font='Bold')],
-[sg.Button('LAN Speed Test',k='lanSpeedTest',size=(30,4),font='Bold'), sg.Button('View Open Shared Files',k='viewOpenSharedFiles',size=(30,4),font='Bold')],
-[sg.Button('Continuous Ping Test',k='continuousPingTest',size=(30,4),font='Bold'), sg.Button('Nmap',k='nmap',size=(30,4),font='Bold')],
+[sg.Button('TCP & UDP Port Query (Dev)',k='portQuery',size=(30,4),font='Bold'), sg.Button('Wireless Site Survey (Dev)',k='wirelesssurvey',size=(30,4),font='Bold')],
+[sg.Button('View Open Ports (Dev)',k='viewOpenPorts',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console (Dev)',k='putty',size=(30,4),font='Bold')],
+[sg.Button('LAN Speed Test (Dev)',k='lanSpeedTest',size=(30,4),font='Bold'), sg.Button('View Open Shared Files',k='viewOpenSharedFiles',size=(30,4),font='Bold')],
+[sg.Button('Continuous Ping Test',k='continuousPingTest',size=(30,4),font='Bold'), sg.Button('Nmap (Dev)',k='nmap',size=(30,4),font='Bold')],
 
 ]
 
 tabgrp = [[
-            sg.TabGroup([[
-            sg.Tab('General',layout=generalLayout,element_justification='center'),
-            sg.Tab('Hardware',layout=hardwareLayout,element_justification='center'),
-            sg.Tab('OS Repair',layout=osrepairLayout,element_justification='center'),
-            sg.Tab('Software',layout=softwareLayout,element_justification='center'),
-            sg.Tab('Networking',layout=networkingLayout,element_justification='center')]],
-            tab_location='topleft'),
+
+sg.TabGroup([[
+sg.Tab('General',layout=generalLayout,element_justification='center'),
+sg.Tab('Hardware',layout=hardwareLayout,element_justification='center'),
+sg.Tab('OS Repair',layout=osrepairLayout,element_justification='center'),
+sg.Tab('Software',layout=softwareLayout,element_justification='center'),
+sg.Tab('Networking',layout=networkingLayout,element_justification='center')]],
+tab_location='topleft'),
+
 ]]
 
 infoColumn = [
-            [sg.Text(f'IP Address: {local_ip}',font='Bold',size=(30,1)),sg.Text('IP Address to Ping ',font='Bold'),sg.InputText(size=(15,1),key='ipAddress',default_text='8.8.8.8')],
-            [sg.Text(f'Username:   {USER}',font='Bold',size=(30,1))],
-            [sg.Text(f'PC Name:    {hostname}',font='Bold',size=(30,1))],
+
+[sg.Text(f'IP Address: {local_ip}',font='Bold',size=(30,1)),sg.Text('IP Address to Ping ',font='Bold'),sg.InputText(size=(15,1),key='ipAddress',default_text='8.8.8.8')],
+[sg.Text(f'Username:   {USER}',font='Bold',size=(35,1)),sg.Button('Start Ping',font='Bold',size=(20,1),k='startPing')],
+[sg.Text(f'PC Name:    {hostname}',font='Bold',size=(30,1))],
+
 ]
 
 layout = [
@@ -133,7 +137,7 @@ while True:
     if event == 'diskManagement':
         os.system('diskmgmt.msc')
     if event == 'defragment':
-        os.system('defrag')
+        os.system('start dfrgui')
     if event == 'diskCleanup':
         os.system('cleanmgr /tuneup:1')
     if event == 'memoryDiagnostic':
@@ -149,6 +153,8 @@ while True:
         #os.startfile('C:\\Windows\\System32\\cgsecurity.exe')
         # https://www.cgsecurity.org/wiki/TestDisk_Download
         #os.startfile('C:\\Windows\\System32\\cgsecurity.exe')
+    if event == 'microsoftServices':
+        os.system('services.msc')
 
     # OS Repair Tab
     if event == 'autoRun':
@@ -211,9 +217,12 @@ while True:
     if event == 'continuousPingTest':
         # get the IP address from the ipAddress key
         ipAddress = values['ipAddress']
-        os.system(f'cmd /k "ping -n 100 {ipAddress}')
+        os.system(f'start cmd /k "ping -n 100 {ipAddress}')
     if event == 'nmap':
         # https://nmap.org/
         continue
 
-
+    # Bottom Tray
+    if event == 'startPing':
+        ipAddress = values['ipAddress']
+        os.system(f'start cmd /k "ping {ipAddress}"')
