@@ -206,7 +206,7 @@ while True:
         # https://www.the-sz.com/products/portscan/
         continue
     if event == 'putty':
-        # https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+        # https://portableapps.com/apps/internet/putty_portable
         continue
     if event == 'lanSpeedTest':
         # https://totusoft.com/lanspeed
