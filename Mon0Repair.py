@@ -41,8 +41,8 @@ osrepairLayout = [
 
 [sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold'), sg.Button('Event Viewer',k='eventViewer',size=(30,4),font='Bold')],
 [sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View (Dev)',k='bluescreenview',size=(30,4),font='Bold')],
-[sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'), sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
-[sg.Button('CCleaner',k='ccleaner',size=(30,4),font='Bold')],
+[sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'),sg.Button('Wise Registry Cleaner (Dev)',k='registryCleaner',size=(30,4),font='Bold')],
+[sg.Button('CCleaner',k='ccleaner',size=(30,4),font='Bold'),sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
 
 ]
 
@@ -204,6 +204,9 @@ while True:
         # https://portableapps.com/apps/security/mcafee-stinger-portable
         # Also possible Malwarebytes ADWCleaner https://www.malwarebytes.com/adwcleaner
         os.startfile('adwcleaner.exe')
+        continue
+    if event == 'registryCleaner':
+        # https://portableapps.com/apps/utilities/wise-registry-cleaner-portable
         continue
 
     # Networking Tab
