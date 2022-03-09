@@ -1,14 +1,18 @@
 # Mon0-RT
-<strong>MonitorZero's Repair Tool</strong>
+
 
 ![Mon0-RT-General](https://user-images.githubusercontent.com/84548743/157490948-b5834a79-bc28-418b-b55f-0cb500ab5207.PNG)
 
-There are many tools like it but this is my own.
+There are many like it, but this is my own.
 
 This tool uses built in resources from Windows and also relies on some portable apps. Such as Ccleaner,PuTTy, and others. This can be used to do quick virus scans, check open ports, check shares, do tune-ups, and more. All with a convinient one click GUI built using PySimpleGUI
 
+This can be placed on a USB drive and taken from client to client for easy to use diagnosis and repair. Portable apps are used in this and can be found in the Python Source file or at the bottom of this Read Me. They are not required but functionality will be limited.
 
+</br></br></br>
 <b>Bottom Tray</b>
+
+Visable from all Tabs
 
 IP Address - Gives the current local IP Address of the machine
 
@@ -20,7 +24,7 @@ IP Address to Ping - The default is Google and great to test for connectivity to
 
 Start Ping - This will open a new Command Propt and ping the address entered into the IP Address to Ping box.
 
-
+</br></br></br>
 <b>General Tab</b>
 
 System Information - Brings up the default system info built into Windows
@@ -41,7 +45,7 @@ Network and Sharing Center - Brings up the Network and Sharing Center built into
 
 Reboot - Safe Mode - This will give you a prompt asking if you want to restart the computer and boot into safe mode
 
-
+</br></br></br>
 <b>Hardware Tab</b>
 
 ![Mon0-RT-Hardware](https://user-images.githubusercontent.com/84548743/157502417-6af9f785-ec4f-4ddb-84aa-459d131e9cc5.PNG)
@@ -64,7 +68,7 @@ Wise Data Recovery - This will launch the Wise Data Recovery tool and attempt to
 
 Microsoft Services - Launches Microsoft Services built into Windows. Great for stopping the Printer Spooler if there are issues or if there are issues with any of the other running services.
 
-
+</br></br></br>
 <b>OS Repair Tab</b>
 
 ![Mon0-RT-OS](https://user-images.githubusercontent.com/84548743/157503566-5d19d060-be3e-49b4-ac23-7d133ef23e2a.PNG)
@@ -85,9 +89,8 @@ Disk Cleanup - Removed due to redundency
 
 CCleaner - This will launch an external Ccleaner to clean up temp files. Great for tuneups and can sometimes free up lots of space.
 
-
+</br></br></br>
 <b>Software Tab</b>
-
 
 ![Mon0-RT-Software](https://user-images.githubusercontent.com/84548743/157505496-0da7c1af-7664-4eba-9584-b4db04beb36d.PNG)
 
@@ -99,7 +102,7 @@ Uninstall Programs - Launch the Uninstaller built into Windows
 
 ADW Virus Scan - Uses an external program Malwarebyte's ADW scanner for a quick virus scan the of the machine.
 
-
+</br></br></br>
 <b>Networking Tab</b>
 
 ![Mon0-RT-Networking](https://user-images.githubusercontent.com/84548743/157506073-96e4e25c-47ad-4de9-9143-f45ab882d04c.PNG)
@@ -128,4 +131,15 @@ View Open Shared Files - This will launch a new Command Prompt and show any shar
 
 Continuous Ping Test - Brings up a new Command Prompt and starts a 100 count ping test to the desired IP Address. IP Address is set by the 'IP Address to Ping' input. This will eventually be replaced with BeepPing for easier testing from afar if the device has audio out.
 
+</br></br></br>
+<b>External Portable Apps</b>
 
+These should be downloaded and installed in the directory where the .exe is located
+
+Wise Data Recovery - https://portableapps.com/apps/utilities/wise-data-recovery-portable</br>
+Autorun - https://portableapps.com/apps/utilities/autoruns-portable</br>
+Ccleaner - https://portableapps.com/apps/utilities/ccportable</br>
+ADW Virus Scan - https://www.malwarebytes.com/adwcleaner - Just an .exe and can be placed in the same folder the Mon0-RT.exe is located</br>
+TCP & UDP Query - https://portableapps.com/apps/utilities/tcpview-portable</br>
+View Open Ports - https://portableapps.com/apps/utilities/portexpert-portable</br>
+PuTTy - https://portableapps.com/apps/internet/putty_portable</br>
