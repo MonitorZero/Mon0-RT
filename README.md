@@ -141,6 +141,7 @@ These should be downloaded and installed in the directory where the .exe is loca
 Wise Data Recovery - https://portableapps.com/apps/utilities/wise-data-recovery-portable - Not Included</br>
 Autorun - https://portableapps.com/apps/utilities/autoruns-portable</br>
 Ccleaner - https://portableapps.com/apps/utilities/ccportable - Not Included</br>
+Disk Health - https://portableapps.com/apps/utilities/crystaldiskinfo_portable</br>
 ADW Virus Scan - https://www.malwarebytes.com/adwcleaner</br>
 TCP & UDP Query - https://portableapps.com/apps/utilities/tcpview-portable</br>
 View Open Ports - https://portableapps.com/apps/utilities/portexpert-portable</br>
