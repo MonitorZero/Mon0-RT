@@ -148,7 +148,7 @@ while True:
         os.startfile(f"C:\\Users\\{USER}\\battery-report.html")
     if event == 'dataRecovery':
         # https://portableapps.com/apps/utilities/wise-data-recovery-portable
-        os.startfile('Z:\WiseDataRecoveryPortable\WiseDataRecoveryPortable.exe')
+        os.startfile('WiseDataRecoveryPortable\WiseDataRecoveryPortable.exe')
     if event == 'microsoftServices':
         os.system('start services.msc')
 
@@ -188,7 +188,7 @@ while True:
     if event == 'stinger':
         # https://portableapps.com/apps/security/mcafee-stinger-portable
         # Also possible Malwarebytes ADWCleaner https://www.malwarebytes.com/adwcleaner
-        os.startfile('Z:\\adwcleaner.exe')
+        os.startfile('adwcleaner.exe')
         continue
 
     # Networking Tab
@@ -202,15 +202,15 @@ while True:
         os.system('start wf.msc')
     if event == 'portquery':
         # https://portableapps.com/apps/utilities/tcpview-portable
-        os.startfile('Z:\TcpViewPortable\TcpViewPortable.exe')
+        os.startfile('TcpViewPortable\TcpViewPortable.exe')
         continue
     if event == 'viewOpenPorts':
         # https://portableapps.com/apps/utilities/portexpert-portable
-        os.startfile('Z:\PortExpertPortable\PortExpertPortable.exe')
+        os.startfile('PortExpertPortable\PortExpertPortable.exe')
         continue
     if event == 'putty':
         # https://portableapps.com/apps/internet/putty_portable
-        os.startfile('Z:\PuttyPortable\PuttyPortable.exe')
+        os.startfile('PuttyPortable\PuttyPortable.exe')
         continue
     if event == 'lanSpeedTest':
         webbrowser.open('https://www.fast.com/')
