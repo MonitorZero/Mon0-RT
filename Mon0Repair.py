@@ -42,7 +42,7 @@ osrepairLayout = [
 [sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold'), sg.Button('Event Viewer',k='eventViewer',size=(30,4),font='Bold')],
 [sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View (Dev)',k='bluescreenview',size=(30,4),font='Bold')],
 [sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'), sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
-[sg.Button('Disk Cleanup',k='disccleanup',size=(30,4),font='Bold'),sg.Button('CCleaner (Test Me)',k='ccleaner',size=(30,4),font='Bold')],
+[sg.Button('CCleaner (Test Me)',k='ccleaner',size=(30,4),font='Bold')],
 
 ]
 
@@ -159,8 +159,8 @@ while True:
     if event == 'eventViewer':
         os.system('eventvwr')
     if event == 'systemFileChecker':
-        os.system('DISM.exe /Online /Cleanup-image /Restorehealth')
-        os.system('sfc /scannow')
+        os.system('start cmd "DISM.exe /Online /Cleanup-image /Restorehealth"')
+        os.system('start cmd "sfc /scannow"')
         # Create popup for completion of scan
         sg.popup('Scan Complete!',title='System File Checker')
     #if event == 'bluescreenview':
@@ -170,8 +170,6 @@ while True:
         os.system('start regedit')
     if event == 'windowsUpdateRepair':
         os.system('start msdt.exe /id WindowsUpdateDiagnostic')
-    if event == 'disccleanup':
-        os.system('start cleanmgr')
     if event == 'ccleaner':
         # https://portableapps.com/apps/utilities/ccportable
         # Changed this to a relative path as the USB drive letter does not stay persistent - NOT TESTED
