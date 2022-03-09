@@ -33,7 +33,7 @@ hardwareLayout = [
 [sg.Button('Defragment',k='defragment',size=(30,4),font='Bold'), sg.Button('Disk Cleanup',k='diskCleanup',size=(30,4),font='Bold')],
 [sg.Button('Memory Diagnostic\n(Requires Restart)',k='memoryDiagnostic',size=(30,4),font='Bold'),sg.Button('LCD Test',k='lcdTest',size=(30,4),font='Bold') ],
 [sg.Button('Battery Health',k='batteryHealth',size=(30,4),font='Bold'), sg.Button('Wise Data Recovery',k='dataRecovery',size=(30,4),font='Bold')],
-[sg.Button('Microsoft Services',k='microsoftServices',size=(30,4),font='Bold')],
+[sg.Button('Microsoft Services',k='microsoftServices',size=(30,4),font='Bold'),sg.Button('Disk Health',k='diskHealth',size=(30,4),font='Bold')],
 
 ]
 
@@ -42,7 +42,7 @@ osrepairLayout = [
 [sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold'), sg.Button('Event Viewer',k='eventViewer',size=(30,4),font='Bold')],
 [sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View (Dev)',k='bluescreenview',size=(30,4),font='Bold')],
 [sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'), sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
-[sg.Button('CCleaner (Test Me)',k='ccleaner',size=(30,4),font='Bold')],
+[sg.Button('CCleaner',k='ccleaner',size=(30,4),font='Bold')],
 
 ]
 
@@ -64,6 +64,17 @@ networkingLayout = [
 
 ]
 
+eztuneLayout = [
+
+[sg.Text('')],
+[sg.Text('Run these programs one by one for the EZ Tune up!',font='Bold')],
+[sg.Text('')],
+[sg.Button('1. Disk Cleanup',k='diskCleanup',size=(30,4),font='Bold'), sg.Button('2. ADW Virus Scan',k='stinger',size=(30,4),font='Bold')],
+[sg.Button('3. CCleaner',k='ccleaner',size=(30,4),font='Bold'), sg.Button('4. Autoruns',k='autoRun',size=(30,4),font='Bold')],
+[sg.Button('5. Battery Health',k='batteryHealth',size=(30,4),font='Bold')],
+
+]
+
 tabgrp = [[
 
 sg.TabGroup([[
@@ -71,7 +82,8 @@ sg.Tab('General',layout=generalLayout,element_justification='center'),
 sg.Tab('Hardware',layout=hardwareLayout,element_justification='center'),
 sg.Tab('OS Repair',layout=osrepairLayout,element_justification='center'),
 sg.Tab('Software',layout=softwareLayout,element_justification='center'),
-sg.Tab('Networking',layout=networkingLayout,element_justification='center')]],
+sg.Tab('Networking',layout=networkingLayout,element_justification='center'),
+sg.Tab('EZ Tune',layout=eztuneLayout,element_justification='center'),]],
 tab_location='topleft'),
 
 ]]
@@ -85,7 +97,7 @@ infoColumn = [
 ]
 
 layout = [
-        [sg.Column(tabgrp,)],
+        [sg.Column(tabgrp)],
         [sg.Column(infoColumn)],
 ]
 
@@ -151,6 +163,9 @@ while True:
         os.startfile('WiseDataRecoveryPortable\WiseDataRecoveryPortable.exe')
     if event == 'microsoftServices':
         os.system('start services.msc')
+    if event =='diskHealth':
+        # https://portableapps.com/apps/utilities/crystaldiskinfo_portable
+        continue
 
     # OS Repair Tab
     if event == 'autoRun':
