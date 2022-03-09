@@ -31,8 +31,8 @@ hardwareLayout = [
 
 [sg.Button('Device Manager',k='deviceManager',size=(30,4),font='Bold'), sg.Button('Disk Management',k='diskManagement',size=(30,4),font='Bold')],
 [sg.Button('Defragment',k='defragment',size=(30,4),font='Bold'), sg.Button('Disk Cleanup',k='diskCleanup',size=(30,4),font='Bold')],
-[sg.Button('Memory Diagnostic',k='memoryDiagnostic',size=(30,4),font='Bold'),sg.Button('LCD Test',k='lcdTest',size=(30,4),font='Bold') ],
-[sg.Button('Battery Health',k='batteryHealth',size=(30,4),font='Bold'), sg.Button('Data Recovery (Dev)',k='dataRecovery',size=(30,4),font='Bold')],
+[sg.Button('Memory Diagnostic\n(Requires Restart)',k='memoryDiagnostic',size=(30,4),font='Bold'),sg.Button('LCD Test',k='lcdTest',size=(30,4),font='Bold') ],
+[sg.Button('Battery Health',k='batteryHealth',size=(30,4),font='Bold'), sg.Button('Wise Data Recovery',k='dataRecovery',size=(30,4),font='Bold')],
 [sg.Button('Microsoft Services',k='microsoftServices',size=(30,4),font='Bold')],
 
 ]
@@ -42,14 +42,14 @@ osrepairLayout = [
 [sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold'), sg.Button('Event Viewer',k='eventViewer',size=(30,4),font='Bold')],
 [sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View (Dev)',k='bluescreenview',size=(30,4),font='Bold')],
 [sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'), sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
-[sg.Button('Disk Cleanup',k='disccleanup',size=(30,4),font='Bold'),sg.Button('CCleaner (Dev)',k='ccleaner',size=(30,4),font='Bold')],
+[sg.Button('Disk Cleanup',k='disccleanup',size=(30,4),font='Bold'),sg.Button('CCleaner (Test Me)',k='ccleaner',size=(30,4),font='Bold')],
 
 ]
 
 softwareLayout = [
 
 [sg.Button('Sleep & Wake Info',k='sleepWakeInfo',size=(30,4),font='Bold'), sg.Button("Don't Sleep",k='donotsleep',size=(30,4),font='Bold')],
-[sg.Button('Uninstall Programs',k='uninstallPrograms',size=(30,4),font='Bold'),sg.Button('Stinger Virus Scan (Dev)' ,k='stinger',size=(30,4),font='Bold')],
+[sg.Button('Uninstall Programs',k='uninstallPrograms',size=(30,4),font='Bold'),sg.Button('ADW Virus Scan',k='stinger',size=(30,4),font='Bold')],
 
 
 ]
@@ -57,8 +57,8 @@ softwareLayout = [
 networkingLayout = [
 
 [sg.Button('Reset TCP/IP & Windsock',k='resetTCPIP',size=(30,4),font='Bold'), sg.Button('Windows Firewall',k='firewall',size=(30,4),font='Bold')],
-[sg.Button('TCP & UDP Port Query (Dev)',k='portQuery',size=(30,4),font='Bold'),sg.Button('View Open Ports (Dev)',k='viewOpenPorts',size=(30,4),font='Bold') ],
-[sg.Button('Nmap (Dev)',k='nmap',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console (Dev)',k='putty',size=(30,4),font='Bold')],
+[sg.Button('TCP & UDP Port Query',k='portQuery',size=(30,4),font='Bold'),sg.Button('View Open Ports',k='viewOpenPorts',size=(30,4),font='Bold') ],
+[sg.Button('Nmap (Dev)',k='nmap',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console',k='putty',size=(30,4),font='Bold')],
 [sg.Button('Up/Down Speed Test (Fast.com)',k='lanSpeedTest',size=(30,4),font='Bold'), sg.Button('View Open Shared Files',k='viewOpenSharedFiles',size=(30,4),font='Bold')],
 [sg.Button('Continuous Ping Test',k='continuousPingTest',size=(30,4),font='Bold') ],
 
@@ -89,7 +89,7 @@ layout = [
         [sg.Column(infoColumn)],
 ]
 
-window = sg.Window('Mon0 Repair Tool',layout)
+window = sg.Window('Mon0 Repair Tool',layout,icon='download.ico')
 
 # Event code
 while True:
@@ -108,7 +108,7 @@ while True:
     if event == 'taskManager':
         os.system('taskmgr')
     if event == 'powershell':
-        os.system('powershell')
+        os.system('start powershell')
     if event == 'cmd':
         pyautogui.hotkey('win','r')
         time.sleep(5)
@@ -131,30 +131,31 @@ while True:
 
     # Hardware Tab
     if event == 'deviceManager':
-        os.system('devmgmt.msc')
+        os.system('start devmgmt.msc')
     if event == 'diskManagement':
-        os.system('diskmgmt.msc')
+        os.system('start diskmgmt.msc')
     if event == 'defragment':
         os.system('start dfrgui')
     if event == 'diskCleanup':
-        os.system('cleanmgr /tuneup:1')
+        os.system('start cleanmgr /tuneup:1')
     if event == 'memoryDiagnostic':
         os.system('mdsched')
     if event == 'lcdTest':
         # This works but it's not as nice as I'd like it to be..
         os.startfile('lcdtest')
     if event == 'batteryHealth':
-        os.system('powercfg /batteryreport')
-        os.startfile('C:\\Windows\\System32\\battery-report')
-    #if event == 'dataRecovery':
-        # https://portableapps.com/apps/utilities/rcvportable
+        os.system("powercfg /BATTERYREPORT")
+        os.startfile(f"C:\\Users\\{USER}\\battery-report.html")
+    if event == 'dataRecovery':
+        # https://portableapps.com/apps/utilities/wise-data-recovery-portable
+        os.startfile('Z:\WiseDataRecoveryPortable\WiseDataRecoveryPortable.exe')
     if event == 'microsoftServices':
-        os.system('services.msc')
+        os.system('start services.msc')
 
     # OS Repair Tab
     if event == 'autoRun':
         # https://portableapps.com/apps/utilities/autoruns-portable
-        os.startfile(f'C:\\Users\\{USER}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup')
+        os.startfile('Z:\AutorunsPortable\AutorunsPortable.exe')
     if event == 'eventViewer':
         os.system('eventvwr')
     if event == 'systemFileChecker':
@@ -166,13 +167,15 @@ while True:
         # Still under development
         # http://www.nirsoft.net/utils/blue_screen_view.html
     if event == 'registryEditor':
-        os.system('regedit')
+        os.system('start regedit')
     if event == 'windowsUpdateRepair':
-        os.system('msdt.exe /id WindowsUpdateDiagnostic')
+        os.system('start msdt.exe /id WindowsUpdateDiagnostic')
     if event == 'disccleanup':
-        os.system('cleanmgr')
+        os.system('start cleanmgr')
     if event == 'ccleaner':
         # https://portableapps.com/apps/utilities/ccportable
+        # Changed this to a relative path as the USB drive letter does not stay persistent - NOT TESTED
+        os.startfile('ccPortable\ccPortable.exe')
         continue
     # Software Tab
     if event == 'sleepWakeInfo':
@@ -187,6 +190,7 @@ while True:
     if event == 'stinger':
         # https://portableapps.com/apps/security/mcafee-stinger-portable
         # Also possible Malwarebytes ADWCleaner https://www.malwarebytes.com/adwcleaner
+        os.startfile('Z:\\adwcleaner.exe')
         continue
 
     # Networking Tab
@@ -197,15 +201,18 @@ while True:
         os.system('ipconfig /renew')
         os.system('ipconfig /flushdns')
     if event == 'firewall':
-        os.system('wf.msc')
+        os.system('start wf.msc')
     if event == 'portquery':
         # https://portableapps.com/apps/utilities/tcpview-portable
+        os.startfile('Z:\TcpViewPortable\TcpViewPortable.exe')
         continue
     if event == 'viewOpenPorts':
         # https://portableapps.com/apps/utilities/portexpert-portable
+        os.startfile('Z:\PortExpertPortable\PortExpertPortable.exe')
         continue
     if event == 'putty':
         # https://portableapps.com/apps/internet/putty_portable
+        os.startfile('Z:\PuttyPortable\PuttyPortable.exe')
         continue
     if event == 'lanSpeedTest':
         webbrowser.open('https://www.fast.com/')
