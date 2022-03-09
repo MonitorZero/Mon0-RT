@@ -21,7 +21,7 @@ IP Address to Ping - The default is Google and great to test for connectivity to
 Start Ping - This will open a new Command Propt and ping the address entered into the IP Address to Ping box.
 
 
-<b>The General Tab</b>
+<b>General Tab</b>
 
 System Information - Brings up the default system info built into Windows
 
@@ -84,3 +84,48 @@ Windows Update Repair - Launch the Windows Update Repair built into Windows to h
 Disk Cleanup - Removed due to redundency
 
 CCleaner - This will launch an external Ccleaner to clean up temp files. Great for tuneups and can sometimes free up lots of space.
+
+
+<b>Software Tab</b>
+
+
+![Mon0-RT-Software](https://user-images.githubusercontent.com/84548743/157505496-0da7c1af-7664-4eba-9584-b4db04beb36d.PNG)
+
+Sleep & Wake Info - This will open the Power Configuration in Windows. Great for if you need to keep something awake during long processes
+
+Don't Sleep - Runs a few commnads to make sure the device stays awake. Normal Power Settings will be reverted after restart.
+
+Uninstall Programs - Launch the Uninstaller built into Windows
+
+ADW Virus Scan - Uses an external program Malwarebyte's ADW scanner for a quick virus scan the of the machine.
+
+
+<b>Networking Tab</b>
+
+![Mon0-RT-Networking](https://user-images.githubusercontent.com/84548743/157506073-96e4e25c-47ad-4de9-9143-f45ab882d04c.PNG)
+
+Reset TCP/IP and Windsock - This is always a long few commands I always forget. This will autorun the commands.
+
+'netsh winsock reset'
+'netsh int ip reset'
+'ipconfig /release'
+'ipconfig /renew'
+'ipconfig /flushdns'
+
+Windows Firewall - Bring up the Windows Firewall built into Windows
+
+TCP & UDP Port Query - Uses external TCP View to test and show all open TCP and UDP ports
+
+View Open Ports - Uses external Port Expert to show all open ports and what processes they're tied to. Good for virus diagnosis
+
+Nmap (Dev) - Still under development but I would like to have the option to run ZenMap from the USB drive but haven't figured out how to accomplish that just yet.
+
+SSH/Telnet/Serial Console - Uses external PuTTy
+
+Up/Down Speed Test - Lanuched the default browser and opens Fast.com for an download and upload speed test
+
+View Open Shared Files - This will launch a new Command Prompt and show any shared files on the local network
+
+Continuous Ping Test - Brings up a new Command Prompt and starts a 100 count ping test to the desired IP Address. IP Address is set by the 'IP Address to Ping' input. This will eventually be replaced with BeepPing for easier testing from afar if the device has audio out.
+
+
