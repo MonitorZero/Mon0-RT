@@ -4,6 +4,8 @@
 
 There are many like it, but this is my own.
 
+<b>! IMPORTANT !</b> Make sure to unzip the Tools.zip where it's located to have access to the external tools
+
 This tool uses built in resources from Windows and also relies on some portable apps. Such as Ccleaner,PuTTy, and others. This can be used to do quick virus scans, check open ports, check shares, do tune-ups, and more. All with a convinient one click GUI built using PySimpleGUI
 
 This can be placed on a USB drive and taken from client to client for easy to use diagnosis and repair. Portable apps are used in this and can be found in the Python Source file or at the bottom of this Read Me. They are not required but functionality will be limited.
