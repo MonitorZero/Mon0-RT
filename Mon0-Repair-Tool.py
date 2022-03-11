@@ -181,8 +181,6 @@ while True:
         pyautogui.typewrite('cmd')
         pyautogui.hotkey('ctrl','shift','enter')
         sg.Popup('Run the following command in the command prompt to check for system files:\n \nDISM.exe /Online /Cleanup-image /Restorehealth \n \nsfc /scannow \n',)
-        #os.system('start /wait cmd /c DISM.exe /Online /Cleanup-image /Restorehealth')
-        #os.system('start /wait cmd /c sfc /scannow')
     #if event == 'bluescreenview':
         # Still under development
         # http://www.nirsoft.net/utils/blue_screen_view.html
