@@ -1,14 +1,18 @@
 # MonitorZero's Repair Tool
 
-![Mon0-RT-General](https://user-images.githubusercontent.com/84548743/157490948-b5834a79-bc28-418b-b55f-0cb500ab5207.PNG)
+![general](https://user-images.githubusercontent.com/84548743/157774250-51ac1554-93b9-477a-96cb-aac04ce3d1af.PNG)
 
 There are many like it, but this is my own.
 
-<b>! IMPORTANT !</b> Make sure to unzip the Tools.zip where it's located to have access to the external tools
+There is no warrenty with this and I am not responsible for any damage done to your computer or anyone else's. Use at your own risk.
+
+<b>! IMPORTANT !</b> Make sure to unzip the Tools.zip where the EXE is located to have access to the external tools
 
 This tool uses built in resources from Windows and also relies on some portable apps. Such as Ccleaner,PuTTy, and others. This can be used to do quick virus scans, check open ports, check shares, do tune-ups, and more. All with a convinient one click GUI built using PySimpleGUI
 
-This can be placed on a USB drive and taken from client to client for easy to use diagnosis and repair. Portable apps are used in this and can be found in the Python Source file or at the bottom of this Read Me. They are not required but functionality will be limited.
+I have many family members and friends come to me for help on thier computer for one reason or another. I built this to simply streamline the process of the usual things I do and to help with commands that I often forget if I haven't used them in a long time.
+
+The whole thing can be placed on a USB as I usually have it on me but decided to put on here because sometimes I just leave things at home and wanted access to it.
 
 </br></br>
 <b>Bottom Tray</b>
@@ -49,7 +53,7 @@ Reboot - Safe Mode - This will give you a prompt asking if you want to restart t
 </br></br>
 <b>Hardware Tab</b>
 
-![Mon0-RT-Hardware](https://user-images.githubusercontent.com/84548743/157502417-6af9f785-ec4f-4ddb-84aa-459d131e9cc5.PNG)
+![hardware](https://user-images.githubusercontent.com/84548743/157774359-64b7fcc2-fa6b-4bb9-b4ea-5f9ec9f63dd2.PNG)
 
 Device Manager - Brings up the Device Manager built into Windows
 
@@ -69,31 +73,33 @@ Wise Data Recovery - This will launch the Wise Data Recovery tool and attempt to
 
 Microsoft Services - Launches Microsoft Services built into Windows. Great for stopping the Printer Spooler if there are issues or if there are issues with any of the other running services.
 
+Disk Health - Launches Crystal Disk Info for HDD & SSD Health
+
 </br></br>
 <b>OS Repair Tab</b>
 
-![Mon0-RT-OS](https://user-images.githubusercontent.com/84548743/157503566-5d19d060-be3e-49b4-ac23-7d133ef23e2a.PNG)
+![OS](https://user-images.githubusercontent.com/84548743/157774370-78f5f9b1-36b8-4930-82ef-8e42b3deee00.PNG)
 
 Autoruns - This will launch Autoruns and external program used to check startup programs on Windows
 
 Event Viewer - Launch Event Viewer built into Windows
 
-DISM System File Checker - This will launch a new Command Prompt and run "DISM.exe /Online /Cleanup-image /Restorehealth" after that has completed it will launch another Command Prompt window and run "sfc /scannow" to ensure completetion 
+DISM System File Checker - This will launch a new Command Prompt and have a pop up for the DISM and SFC. ( This is not the best way of doing it but it's still under dev until I can find a good way to launch it but it works for me.
 
 Blue Screen View (Dev) - Still under development
 
 Registry Editor - Launch the Windows Registry Editor
 
+Wise Registry Cleaner - Launch Wise Registry Cleaner and this will look for blank entries and do a low level cleanup of the registry
+
 Windows Update Repair - Launch the Windows Update Repair built into Windows to help with any issues that might be occuring due to updates.
 
-Disk Cleanup - Removed due to redundency
-
-CCleaner - This will launch an external Ccleaner to clean up temp files. Great for tuneups and can sometimes free up lots of space.
+CCleaner - Launch Ccleaner to clean up temp files. Great for tuneups and can sometimes free up lots of space.
 
 </br></br>
 <b>Software Tab</b>
 
-![Mon0-RT-Software](https://user-images.githubusercontent.com/84548743/157505496-0da7c1af-7664-4eba-9584-b4db04beb36d.PNG)
+![software](https://user-images.githubusercontent.com/84548743/157774452-3182ffbd-fad7-4e48-a2bf-3d06e843153c.PNG)
 
 Sleep & Wake Info - This will open the Power Configuration in Windows. Great for if you need to keep something awake during long processes
 
@@ -101,12 +107,12 @@ Don't Sleep - Runs a few commnads to make sure the device stays awake. Normal Po
 
 Uninstall Programs - Launch the Uninstaller built into Windows
 
-ADW Virus Scan - Uses an external program Malwarebyte's ADW scanner for a quick virus scan the of the machine.
+ADW Virus Scan - Launch Malwarebyte's ADW scanner for a quick virus scan the of the machine.
 
 </br></br>
 <b>Networking Tab</b>
 
-![Mon0-RT-Networking](https://user-images.githubusercontent.com/84548743/157506073-96e4e25c-47ad-4de9-9143-f45ab882d04c.PNG)
+![networking](https://user-images.githubusercontent.com/84548743/157774483-eb6138e6-ec21-4a16-9baa-495a5184a9c4.PNG)
 
 Reset TCP/IP and Windsock - This is always a long few commands I always forget. This will autorun the commands.
 
@@ -124,7 +130,7 @@ View Open Ports - Uses external Port Expert to show all open ports and what proc
 
 Nmap (Dev) - Still under development but I would like to have the option to run ZenMap from the USB drive but haven't figured out how to accomplish that just yet.
 
-SSH/Telnet/Serial Console - Uses external PuTTy
+SSH/Telnet/Serial Console - Launch PuTTY
 
 Up/Down Speed Test - Lanuched the default browser and opens Fast.com for an download and upload speed test
 
@@ -133,17 +139,10 @@ View Open Shared Files - This will launch a new Command Prompt and show any shar
 Continuous Ping Test - Brings up a new Command Prompt and starts a 100 count ping test to the desired IP Address. IP Address is set by the 'IP Address to Ping' input. This will eventually be replaced with BeepPing for easier testing from afar if the device has audio out.
 
 </br></br>
-<b>External Portable Apps</b>
+<b>EZ Tune</b>
 
-Most of these are included in the repo but there are a few that are not included due to size restrictions
+![eztune](https://user-images.githubusercontent.com/84548743/157774612-947089ff-7e88-415e-996d-2a56dd3829cf.PNG)
 
-These should be downloaded and installed in the directory where the .exe is located
+This has options from other tabs but it's my usual go to's for "My computer is slow/not working right"
 
-Wise Data Recovery - https://portableapps.com/apps/utilities/wise-data-recovery-portable - Not Included</br>
-Autorun - https://portableapps.com/apps/utilities/autoruns-portable</br>
-Ccleaner - https://portableapps.com/apps/utilities/ccportable - Not Included</br>
-Disk Health - https://portableapps.com/apps/utilities/crystaldiskinfo_portable</br>
-ADW Virus Scan - https://www.malwarebytes.com/adwcleaner</br>
-TCP & UDP Query - https://portableapps.com/apps/utilities/tcpview-portable</br>
-View Open Ports - https://portableapps.com/apps/utilities/portexpert-portable</br>
-PuTTy - https://portableapps.com/apps/internet/putty_portable</br>
+It may not fix everything but is a good base line to do and relatively easy to perform.
