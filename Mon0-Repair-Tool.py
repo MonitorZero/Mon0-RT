@@ -40,7 +40,7 @@ hardwareLayout = [
 osrepairLayout = [
 
 [sg.Button('Autoruns',k='autoRun',size=(30,4),font='Bold'), sg.Button('Event Viewer',k='eventViewer',size=(30,4),font='Bold')],
-[sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View (Dev)',k='bluescreenview',size=(30,4),font='Bold')],
+[sg.Button('DISM System File Checker',k='systemFileChecker',size=(30,4),font='Bold'), sg.Button('Blue Screen View',k='bluescreenview',size=(30,4),font='Bold')],
 [sg.Button('Registry Editor',k='registryEditor',size=(30,4),font='Bold'),sg.Button('Wise Registry Cleaner',k='registryCleaner',size=(30,4),font='Bold')],
 [sg.Button('CCleaner',k='ccleaner',size=(30,4),font='Bold'),sg.Button('Windows Update Repair',k='windowsUpdateRepair',size=(30,4),font='Bold')],
 
@@ -58,7 +58,7 @@ networkingLayout = [
 
 [sg.Button('Reset TCP/IP & Windsock',k='resetTCPIP',size=(30,4),font='Bold'), sg.Button('Windows Firewall',k='firewall',size=(30,4),font='Bold')],
 [sg.Button('TCP & UDP Port Query',k='portQuery',size=(30,4),font='Bold'),sg.Button('View Open Ports',k='viewOpenPorts',size=(30,4),font='Bold') ],
-[sg.Button('Nmap (Dev)',k='nmap',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console',k='putty',size=(30,4),font='Bold')],
+[sg.Button('IP Scanner',k='ipScanner',size=(30,4),font='Bold'), sg.Button('SSH/Telnet/Serial Console',k='putty',size=(30,4),font='Bold')],
 [sg.Button('Up/Down Speed Test (Fast.com)',k='lanSpeedTest',size=(30,4),font='Bold'), sg.Button('View Open Shared Files',k='viewOpenSharedFiles',size=(30,4),font='Bold')],
 [sg.Button('Continuous Ping Test',k='continuousPingTest',size=(30,4),font='Bold') ],
 
@@ -167,7 +167,6 @@ while True:
     if event =='diskHealth':
         # https://portableapps.com/apps/utilities/crystaldiskinfo_portable
         os.startfile('CrystalDiskInfoPortable\CrystalDiskInfoPortable.exe')
-        continue
 
     # OS Repair Tab
     if event == 'autoRun':
@@ -180,10 +179,13 @@ while True:
         time.sleep(5)
         pyautogui.typewrite('cmd')
         pyautogui.hotkey('ctrl','shift','enter')
+        time.sleep(5)
         sg.Popup('Run the following command in the command prompt to check for system files:\n \nDISM.exe /Online /Cleanup-image /Restorehealth \n \nsfc /scannow \n',)
-    #if event == 'bluescreenview':
-        # Still under development
+        #os.system('start /wait cmd /c DISM.exe /Online /Cleanup-image /Restorehealth')
+        #os.system('start /wait cmd /c sfc /scannow')
+    if event == 'bluescreenview':
         # http://www.nirsoft.net/utils/blue_screen_view.html
+        os.startfile('bluescreenviewer\BlueScreenView.exe')
     if event == 'registryEditor':
         os.system('start regedit')
     if event == 'windowsUpdateRepair':
@@ -191,7 +193,7 @@ while True:
     if event == 'ccleaner':
         # https://portableapps.com/apps/utilities/ccportable
         os.startfile('ccPortable\ccPortable.exe')
-        continue
+        
     
     # Software Tab
     if event == 'sleepWakeInfo':
@@ -207,11 +209,10 @@ while True:
         # https://portableapps.com/apps/security/mcafee-stinger-portable
         # Also possible Malwarebytes ADWCleaner https://www.malwarebytes.com/adwcleaner
         os.startfile('adwcleaner.exe')
-        continue
     if event == 'registryCleaner':
         # https://portableapps.com/apps/utilities/wise-registry-cleaner-portable
         os.startfile('WiseRegistryCleanerPortable\WiseRegistryCleanerPortable.exe')
-        continue
+        
 
     # Networking Tab
     if event == 'resetTCPIP':
@@ -225,27 +226,23 @@ while True:
     if event == 'portquery':
         # https://portableapps.com/apps/utilities/tcpview-portable
         os.startfile('TcpViewPortable\TcpViewPortable.exe')
-        continue
     if event == 'viewOpenPorts':
         # https://portableapps.com/apps/utilities/portexpert-portable
         os.startfile('PortExpertPortable\PortExpertPortable.exe')
-        continue
     if event == 'putty':
         # https://portableapps.com/apps/internet/putty_portable
         os.startfile('PuttyPortable\PuttyPortable.exe')
-        continue
     if event == 'lanSpeedTest':
         webbrowser.open('https://www.fast.com/')
-        continue
     if event == 'viewOpenSharedFiles':
         os.system('start cmd /k "net share"')
     if event == 'continuousPingTest':
         # get the IP address from the ipAddress key
         ipAddress = values['ipAddress']
         os.system(f'start cmd /k "ping -n 100 {ipAddress}')
-    if event == 'nmap':
-        # https://nmap.org/
-        continue
+    if event == 'ipScanner':
+        # https://www.advanced-ip-scanner.com
+        os.startfile('ipscanner\Advanced_IP_Scanner.exe')
 
     # EZ Tune Tab
     if event == 'systemFileChecker0':
@@ -258,26 +255,20 @@ while True:
     if event == 'stinger1':
         # https://portableapps.com/apps/security/mcafee-stinger-portable
         os.startfile('adwcleaner.exe')
-        continue
     if event == 'diskCleanup2':
         os.system('start cleanmgr /tuneup:1')
     if event == 'registryCleaner3':
         # https://portableapps.com/apps/utilities/wise-registry-cleaner-portable
         os.startfile('WiseRegistryCleanerPortable\WiseRegistryCleanerPortable.exe')
-        continue
     if event == 'ccleaner4':
         # https://portableapps.com/apps/utilities/ccportable
         os.startfile('ccPortable\ccPortable.exe')
-        continue
     if event == 'autoRun5':
         # https://portableapps.com/apps/utilities/autoruns-portable
         os.startfile('AutorunsPortable\AutorunsPortable.exe')
-        continue
     if event == 'batteryHealth6':
         os.system("powercfg /BATTERYREPORT")
         os.startfile('battery-report.html')
-
-
 
     # Bottom Tray
     if event == 'startPing':
