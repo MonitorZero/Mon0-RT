@@ -98,8 +98,8 @@ infoColumn = [
 ]
 
 layout = [
-        [sg.Column(tabgrp)],
-        [sg.Column(infoColumn)],
+[sg.Column(tabgrp)],
+[sg.Column(infoColumn)],
 ]
 
 window = sg.Window('Mon0 Repair Tool',layout,icon='icon/download.ico')
@@ -123,10 +123,7 @@ while True:
     if event == 'powershell':
         os.system('start powershell')
     if event == 'cmd':
-        pyautogui.hotkey('win','r')
-        time.sleep(5)
-        pyautogui.typewrite('cmd')
-        pyautogui.hotkey('ctrl','shift','enter')
+        os.system('start cmd')       
     if event == 'printers':
         os.system('Start ms-settings:printers')
     if event == 'network':
@@ -150,7 +147,7 @@ while True:
     if event == 'defragment':
         os.system('start dfrgui')
     if event == 'diskCleanup':
-        os.system('start cleanmgr /tuneup:1')
+        os.system('start cleanmgr')
     if event == 'memoryDiagnostic':
         os.system('mdsched')
     if event == 'lcdTest':
@@ -175,14 +172,8 @@ while True:
     if event == 'eventViewer':
         os.system('eventvwr')
     if event == 'systemFileChecker':
-        pyautogui.hotkey('win','r')
-        time.sleep(5)
-        pyautogui.typewrite('cmd')
-        pyautogui.hotkey('ctrl','shift','enter')
-        time.sleep(5)
-        sg.Popup('Run the following command in the command prompt to check for system files:\n \nDISM.exe /Online /Cleanup-image /Restorehealth \n \nsfc /scannow \n',)
-        #os.system('start /wait cmd /c DISM.exe /Online /Cleanup-image /Restorehealth')
-        #os.system('start /wait cmd /c sfc /scannow')
+        os.system('cmd /k sfc /scannow')
+        os.system('cmd /k DISM.exe /Online /Cleanup-image /Restorehealth')
     if event == 'bluescreenview':
         # http://www.nirsoft.net/utils/blue_screen_view.html
         os.startfile('bluescreenviewer\BlueScreenView.exe')
@@ -223,9 +214,9 @@ while True:
         os.system('ipconfig /flushdns')
     if event == 'firewall':
         os.system('start wf.msc')
-    if event == 'portquery':
+    if event == 'portQuery':
         # https://portableapps.com/apps/utilities/tcpview-portable
-        os.startfile('TcpViewPortable\TcpViewPortable.exe')
+        os.startfile('TCPViewPortable\TCPViewPortable.exe')
     if event == 'viewOpenPorts':
         # https://portableapps.com/apps/utilities/portexpert-portable
         os.startfile('PortExpertPortable\PortExpertPortable.exe')
@@ -239,24 +230,20 @@ while True:
     if event == 'continuousPingTest':
         # get the IP address from the ipAddress key
         ipAddress = values['ipAddress']
-        os.system(f'start cmd /k "ping -n 100 {ipAddress}')
+        os.system(f'start cmd /k ping -n 100 {ipAddress}')
     if event == 'ipScanner':
         # https://www.advanced-ip-scanner.com
         os.startfile('ipscanner\Advanced_IP_Scanner.exe')
 
     # EZ Tune Tab
     if event == 'systemFileChecker0':
-        pyautogui.hotkey('win','r')
-        time.sleep(5)
-        pyautogui.typewrite('cmd')
-        pyautogui.hotkey('ctrl','shift','enter')
-        time.sleep(5)
-        sg.Popup('Run the following command in the command prompt to check for system files:\n \nDISM.exe /Online /Cleanup-image /Restorehealth \n \nsfc /scannow \n',)
+        os.system('cmd /k sfc /scannow')
+        os.system('cmd /k DISM.exe /Online /Cleanup-image /Restorehealth')
     if event == 'stinger1':
         # https://portableapps.com/apps/security/mcafee-stinger-portable
         os.startfile('adwcleaner.exe')
     if event == 'diskCleanup2':
-        os.system('start cleanmgr /tuneup:1')
+        os.system('start cleanmgr')
     if event == 'registryCleaner3':
         # https://portableapps.com/apps/utilities/wise-registry-cleaner-portable
         os.startfile('WiseRegistryCleanerPortable\WiseRegistryCleanerPortable.exe')
