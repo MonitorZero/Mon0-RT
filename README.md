@@ -8,6 +8,8 @@ There is no warrenty with this and I am not responsible for any damage done to y
 
 <b>! IMPORTANT !</b> Make sure to unzip the Tools.zip where the EXE is located to have access to the external tools
 
+As with most PC Diagnostic Tools it's best to run this as Admin when able to get the full functionality and intended use of the tool.
+
 This tool uses built in resources from Windows and also relies on some portable apps. Such as Ccleaner,PuTTy, and others. This can be used to do quick virus scans, check open ports, check shares, do tune-ups, and more. All with a convinient one click GUI built using PySimpleGUI
 
 I have many family members and friends come to me for help on thier computer for one reason or another. I built this to simply streamline the process of the usual things I do and to help with commands that I often forget if I haven't used them in a long time.
