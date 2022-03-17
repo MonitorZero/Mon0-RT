@@ -50,7 +50,7 @@ softwareLayout = [
 
 [sg.Button('Sleep & Wake Info',k='sleepWakeInfo',size=(30,4),font='Bold'), sg.Button("Don't Sleep",k='donotsleep',size=(30,4),font='Bold')],
 [sg.Button('Uninstall Programs',k='uninstallPrograms',size=(30,4),font='Bold'),sg.Button('ADW Virus Scan',k='stinger',size=(30,4),font='Bold')],
-
+[sg.Button('Process Explorer',k='processExplorer',size=(30,4),expand_x=True,font='Bold')],
 
 ]
 
@@ -184,6 +184,8 @@ while True:
     if event == 'ccleaner':
         # https://portableapps.com/apps/utilities/ccportable
         os.startfile('ccPortable\ccPortable.exe')
+    if event == 'processExplorer':
+        os.startfile('ProcessExplorer\procexp64.exe')
         
     
     # Software Tab
